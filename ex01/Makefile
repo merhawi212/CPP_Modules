@@ -1,6 +1,6 @@
 NAME = PhoneBook
 
-SRC = PhoneBook.cpp Contact.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
 
 BUILD_DIR = ./build
 OBJ = $(BUILD_DIR)/$(SRC:.cpp=.o)
@@ -21,7 +21,7 @@ $(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) $(BUILD_DIR)
+	$(RM) $(BUILD_DIR) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
