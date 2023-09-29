@@ -7,56 +7,51 @@ PhoneBook::~PhoneBook(){
 
 }
 
+std::string PhoneBook::getinput(int index, std::string str, std::string input)
+{
+	
+	while(!std::cin.eof())
+	{
+		std::cout << "Enter "<< input <<": ";
+		if (!std::getline(std::cin, str))
+            break;
+		str.erase(0, str.find_first_not_of(" \t"));
+        str.erase(str.find_last_not_of(" \t") + 1);
+		if (str == "")
+			continue ;
+		else if (input == "FirstName")
+			this->_contact[index % 8].setfirstName(str);
+		else if (input == "LastName")
+			this->_contact[index % 8].setlastName(str);
+		else if (input == "NickName")
+			this->_contact[index % 8].setnickName(str);
+		else if (input == "PhoneNumber")
+			this->_contact[index % 8].setphoneNumber(str);
+		else if (input == "DarkestSecret")
+			this->_contact[index % 8].setdarkestSecret(str);
+		break ;	
+	}
+	str = "";
+	return str;
+}
+
 void PhoneBook::addContact(){
-	std::string str = "";
+	int index = this->_numberOfContacts % 8;
 	if (this->_numberOfContacts <= 7)
-		std::cout << "++ Add "<< this->_numberOfContacts + 1 << " contact ++" <<std::endl;
-	while(!std::cin.eof() && str == "")
-	{
-		std::cout << "Enter FirstName: ";
-		if (!std::getline(std::cin, str))
-            break;
-		std::cout << "hey ["<< str << "]"<< std::endl;
-		this->_contact[this->_numberOfContacts % 8].setfirstName(str);
-	}
-	str = "";
-	while(!std::cin.eof() && str == "")
-	{
-		std::cout << "Enter LastName: ";
-		if (!std::getline(std::cin, str))
-            break;
-		this->_contact[this->_numberOfContacts % 8].setlastName(str);
-	}
-	str = "";
-	while(!std::cin.eof() && str == "")
-	{
-		std::cout << "Enter NickName: ";
-		if (!std::getline(std::cin, str))
-            break;
-		this->_contact[this->_numberOfContacts % 8].setnickName(str);
-	}
-	str = "";
-	while(!std::cin.eof() && str == "")
-	{
-		std::cout << "Enter PhoneNumber: ";
-		if (!std::getline(std::cin, str))
-            break;
-		this->_contact[this->_numberOfContacts % 8].setphoneNumber(str);
-	}
-	str = "";
-	while(!std::cin.eof() && str == "")
-	{
-		std::cout << "Enter Darkest Secret: ";
-		if (!std::getline(std::cin, str))
-            break;
-		this->_contact[this->_numberOfContacts % 8].setdarkestSecret(str);
-	}
+		std::cout << "++ Add "<< index + 1 << " contact ++" <<std::endl;
+	else
+		std::cout << "++ update contact "<< this->_contact[index % 8].getFirstName() << " by new contact ++" <<std::endl;
+	std::string str = "";
+	str = getinput(index, str, "FirstName");
+	str = getinput(index, str, "LastName");
+	str = getinput(index, str, "NickName");
+	str = getinput(index, str, "PhoneNumber");
+	str = getinput(index, str, "DarkestSecret");
 	if (std::cin.eof())
 		return;
-	std::cout <<"Congrats! contact " << this->_contact[this->_numberOfContacts % 8].getFirstName()
+	std::cout <<"Congrats! contact " << this->_contact[index % 8].getFirstName()
 					 << " is added to phonebook successfully." << std::endl;
 	this->_numberOfContacts++;
-	std::cin.clear();
 	this->promptUser("adding");
 }
 
@@ -65,26 +60,33 @@ void PhoneBook::searchContact() {
         std::cout << "No contacts to display!" << std::endl;
         return;
     }
-    headerFormat();
-	for (int i = 0; i < this->_numberOfContacts; i++)
-		displayContactDetails(_contact[i], i);
-		
-	fetchContact();
+    this->viewContacts();
+	this->fetchContact();
 }
 
 void PhoneBook::fetchContact()
 {
 	int index;
 
-	std::cout << "Enter the index of the contact you want to display: ";
-	std::cin >> index;
-	if (std::cin.eof())
-		return;
-	if (index >= 0 && index < _numberOfContacts) {
-		headerFormat();
-		displayContactDetails(_contact[index], index);
-	} else {
-		std::cout << "Invalid index. No contact found at that index." << std::endl;
+	while(true)
+	{
+		std::cout << "Enter the index of the contact you want to display: ";
+		if (!(std::cin >> index))
+		{
+			this->clearStream();
+			std::cout << "Invalid value input" << std::endl;
+			continue ;
+		}
+		if (std::cin.eof())
+			return;
+		if (index >= 0 && index < _numberOfContacts) {
+			std::cout << "\n++++++++Contact #"<<index + 1 <<"++++++++" << std::endl;
+			this->_contact[index].displayContactDetails();
+		} else {
+			std::cout << "Invalid index. No contact found at that index." << std::endl;
+			continue ;
+		}
+		break ;
 	}
 	promptUser("searching");
 }
@@ -94,57 +96,58 @@ void PhoneBook::clearStream()
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
+
 void PhoneBook::promptUser(std::string type)
 {
 	int num = -1;
 
 	std::cout << "Please enter 0 -> 'return back', 1 -> 'to continue " << type << "': ";
-	std::cin >> num;
+	if (!(std::cin >> num) || !(num >= 0 && num <= 1))
+	{
+		if (std::cin.eof())
+			return;
+		this->clearStream();
+		std::cout << "Please enter valid input from the options" << std::endl;
+		this->promptUser(type);
+	}
+	this->clearStream();
 	if (std::cin.eof())
 		return;
 	if (num == 0)
 		return ;
-	else if (num == 1 && type == "adding"){
-		this->clearStream();
+	else if (num == 1 && type == "adding")
 		addContact();
-	}
 	else if (num == 1 && type == "searching")
-	{
-		this->clearStream();
 		this->fetchContact();
-	}
-	else
-	{
-		std::cout << "Please enter valid input from the options" << std::endl;
-		this->clearStream();
-		this->promptUser();
-	}
-}
-void PhoneBook::displayContactDetails(Contact contact, int i)
-{
-	std::cout << std::right
-		<< std::setw(10) <<"|         " << i + 1 << "|"
-		<< std::setw(10) << (contact.getFirstName().length() > 10 ? 
-			(contact.getFirstName().substr(0, 9) + ".") : contact.getFirstName()) << "|"
-
-		<< std::setw(10) << (contact.getLastName().length() > 10 ? 
-			(contact.getLastName().substr(0, 9) + ".") : contact.getLastName()) << "|"
-
-		<< std::setw(10) << (contact.getNickName().length() > 10 ? 
-			(contact.getNickName().substr(0, 9) + ".") : contact.getNickName()) << "|"
-	<< std::endl;
-	_repeatedString = std::string(45, '-');
-	std::cout << _repeatedString << std::endl;
 }
 
-void PhoneBook::headerFormat()
+void PhoneBook::viewContacts()
 {
+	int num_of_contacts = this->_numberOfContacts >= 8? 8:this->_numberOfContacts;
 	_repeatedString = std::string(45, '-');
 	std::cout << _repeatedString << std::endl;
+
 	std::cout << std::right << std::setw(10) << "|     Index" << "|"
               << std::setw(10) << "FirstName" << "|"
               << std::setw(10) << "LastName" << "|"
-              << std::setw(10) << "Nickname" << "|" << std::endl;
+              << std::setw(10) << "Nickname" << "|" 
+	<< std::endl;
 	_repeatedString = std::string(45, '-');
 	std::cout << _repeatedString << std::endl;
+	for (int i = 0; i < num_of_contacts; i++)
+	{
+		std::cout << std::right
+		<< std::setw(10) <<"|         " << i + 1 << "|"
+		<< std::setw(10) << (_contact[i].getFirstName().length() > 10 ? 
+			(_contact[i].getFirstName().substr(0, 9) + ".") : _contact[i].getFirstName()) << "|"
+
+		<< std::setw(10) << (_contact[i].getLastName().length() > 10 ? 
+			(_contact[i].getLastName().substr(0, 9) + ".") : _contact[i].getLastName()) << "|"
+
+		<< std::setw(10) << (_contact[i].getNickName().length() > 10 ? 
+			(_contact[i].getNickName().substr(0, 9) + ".") : _contact[i].getNickName()) << "|"
+		<< std::endl;
+		_repeatedString = std::string(45, '-');
+		std::cout << _repeatedString << std::endl;
+	}
 }

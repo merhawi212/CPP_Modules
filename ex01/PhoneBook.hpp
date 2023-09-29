@@ -7,20 +7,21 @@
 #include "Contact.hpp"
 
 class PhoneBook {
-private:
-    Contact _contact[8];
-    int _numberOfContacts;
-	std::string _repeatedString;
+	private:
+		Contact _contact[8];
+		int _numberOfContacts;
+		std::string _repeatedString;
+		void viewContacts();
+		void clearStream();
+		void promptUser(std::string type);
+		void fetchContact();
+		std::string getinput(int index, std::string str, std::string input);
 
-public:
-    PhoneBook();
-    ~PhoneBook();
-    void addContact();
-    void searchContact(); 
-	void headerFormat();
-	void displayContactDetails(Contact contact, int i);
-	void fetchContact();
-	void promptUser(std::string type);
+	public:
+		PhoneBook();
+		~PhoneBook();
+		void addContact();
+		void searchContact(); 
 
 };
 

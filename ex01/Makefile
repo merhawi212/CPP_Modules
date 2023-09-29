@@ -2,8 +2,8 @@ NAME = PhoneBook
 
 SRC = PhoneBook.cpp Contact.cpp main.cpp
 
-BUILD_DIR = ./build
-OBJ = $(BUILD_DIR)/$(SRC:.cpp=.o)
+BUILD_DIR = ./.build
+OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 
 
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CC = c++
