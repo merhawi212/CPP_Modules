@@ -133,16 +133,16 @@ void PhoneBook::searchContact() {
 void PhoneBook::_viewContacts()
 {
 	int num_of_contacts = this->_numberOfContacts >= 8? 8:this->_numberOfContacts;
-	_repeatedString = std::string(45, '-');
-	std::cout << _repeatedString << std::endl;
+	this->_repeatedString = std::string(45, '-');
+	std::cout << this->_repeatedString << std::endl;
 
 	std::cout << std::right << std::setw(10) <<BLUE_TEXT"|     Index" << "|"
               << std::setw(10) << "FirstName" << "|"
               << std::setw(10) << "LastName" << "|"
               << std::setw(10) << "Nickname" << "|" RESET_COLOR
 	<< std::endl;
-	_repeatedString = std::string(45, '-');
-	std::cout << _repeatedString << std::endl;
+	this->_repeatedString = std::string(45, '-');
+	std::cout << this->_repeatedString << std::endl;
 	for (int i = 0; i < num_of_contacts; i++)
 	{
 		std::cout << std::right
@@ -156,7 +156,7 @@ void PhoneBook::_viewContacts()
 		<< std::setw(10) << (_contact[i].getNickName().length() > 10 ? 
 			(_contact[i].getNickName().substr(0, 9) + ".") : _contact[i].getNickName()) << "|"
 		<< std::endl;
-		_repeatedString = std::string(45, '-');
-		std::cout << _repeatedString << std::endl;
+		this->_repeatedString = std::string(45, '-');
+		std::cout << this->_repeatedString << std::endl;
 	}
 }
