@@ -47,7 +47,7 @@ std::string Contact::getDarkestSecret()  {
 
 void Contact::displayContactDetails()
 {
-	std::cout << " First Name: "  << getFirstName() << std::endl;
-	std::cout << " Last Name:  "  << getLastName() << std::endl;
-	std::cout << " NickName:   "  << getNickName() << std::endl <<std::endl;
+	std::cout << " First Name: "  << this->getFirstName() << std::endl;
+	std::cout << " Last Name:  "  << this->getLastName() << std::endl;
+	std::cout << " NickName:   "  << this->getNickName() << std::endl <<std::endl;
 }

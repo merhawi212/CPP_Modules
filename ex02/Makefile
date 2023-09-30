@@ -21,7 +21,7 @@ $(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) $(BUILD_DIR) $(OBJ)
+	$(RM) $(BUILD_DIR) 
 
 fclean: clean
 	$(RM) $(NAME)

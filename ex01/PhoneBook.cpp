@@ -7,7 +7,7 @@ PhoneBook::~PhoneBook(){
 
 }
 
-std::string PhoneBook::getinput(int index, std::string str, std::string input)
+std::string PhoneBook::_getinput(int index, std::string str, std::string input)
 {
 	
 	while(!std::cin.eof())
@@ -35,102 +35,111 @@ std::string PhoneBook::getinput(int index, std::string str, std::string input)
 	return str;
 }
 
-void PhoneBook::addContact(){
-	int index = this->_numberOfContacts % 8;
-	if (this->_numberOfContacts <= 7)
-		std::cout << "++ Add "<< index + 1 << " contact ++" <<std::endl;
-	else
-		std::cout << "++ update contact "<< this->_contact[index % 8].getFirstName() << " by new contact ++" <<std::endl;
-	std::string str = "";
-	str = getinput(index, str, "FirstName");
-	str = getinput(index, str, "LastName");
-	str = getinput(index, str, "NickName");
-	str = getinput(index, str, "PhoneNumber");
-	str = getinput(index, str, "DarkestSecret");
-	if (std::cin.eof())
-		return;
-	std::cout <<"Congrats! contact " << this->_contact[index % 8].getFirstName()
-					 << " is added to phonebook successfully." << std::endl;
-	this->_numberOfContacts++;
-	this->promptUser("adding");
-}
-
-void PhoneBook::searchContact() {
-   if (this->_numberOfContacts == 0) {
-        std::cout << "No contacts to display!" << std::endl;
-        return;
-    }
-    this->viewContacts();
-	this->fetchContact();
-}
-
-void PhoneBook::fetchContact()
+void PhoneBook::_fetchContact()
 {
 	int index;
+	int temp = this->_numberOfContacts >= 8? 8:this->_numberOfContacts;
 
-	while(true)
+	while(!std::cin.eof())
 	{
 		std::cout << "Enter the index of the contact you want to display: ";
+		
 		if (!(std::cin >> index))
 		{
-			this->clearStream();
-			std::cout << "Invalid value input" << std::endl;
+			if (std::cin.eof())
+				return;
+			this->_clearStream();
+			std::cout << RED_TEXT"Invalid value input" RESET_COLOR << std::endl;
 			continue ;
 		}
-		if (std::cin.eof())
-			return;
-		if (index >= 0 && index < _numberOfContacts) {
-			std::cout << "\n++++++++Contact #"<<index + 1 <<"++++++++" << std::endl;
+		if (index >= 0 && index < temp) {
+			std::cout << BLUE_TEXT"\n++++++++Contact #"<<index + 1 <<"++++++++" RESET_COLOR<< std::endl;
 			this->_contact[index].displayContactDetails();
 		} else {
-			std::cout << "Invalid index. No contact found at that index." << std::endl;
+			std::cout << RED_TEXT"Invalid index. No contact found at that index." RESET_COLOR<< std::endl;
 			continue ;
 		}
 		break ;
 	}
-	promptUser("searching");
+	_promptUser("searching");
 }
 
-void PhoneBook::clearStream()
+void PhoneBook::_clearStream()
 {
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-void PhoneBook::promptUser(std::string type)
+void PhoneBook::_promptUser(std::string type)
 {
 	int num = -1;
 
-	std::cout << "Please enter 0 -> 'return back', 1 -> 'to continue " << type << "': ";
+	if (std::cin.eof())
+			return;
+	std::cout <<YELLOW_TEXT "Please enter 0 -> 'return back', 1 -> 'to continue " << type << "': " RESET_COLOR;
 	if (!(std::cin >> num) || !(num >= 0 && num <= 1))
 	{
 		if (std::cin.eof())
 			return;
-		this->clearStream();
-		std::cout << "Please enter valid input from the options" << std::endl;
-		this->promptUser(type);
+		this->_clearStream();
+		std::cout << RESET_COLOR"Please enter valid input from the options" RESET_COLOR<< std::endl;
+		this->_promptUser(type);
+		return ;
 	}
-	this->clearStream();
-	if (std::cin.eof())
-		return;
-	if (num == 0)
+	this->_clearStream();
+	if (std::cin.eof() && num == 0)
 		return ;
 	else if (num == 1 && type == "adding")
 		addContact();
 	else if (num == 1 && type == "searching")
-		this->fetchContact();
+		this->_fetchContact();
 }
 
-void PhoneBook::viewContacts()
+
+void PhoneBook::addContact(){
+	int index = this->_numberOfContacts % 8;
+	if (this->_numberOfContacts <= 7)
+		std::cout << BLUE_TEXT"++ Add "<< index + 1 << " contact ++" RESET_COLOR<<std::endl;
+	else
+	{
+		std::cout << ORANGE_TEXT"++ Attention! You are updating contact "
+			<< this->_contact[index % 8].getFirstName() << " by new contact ++" RESET_COLOR<<std::endl;
+	}
+	std::string str = "";
+	str = _getinput(index, str, "FirstName");
+	str = _getinput(index, str, "LastName");
+	str = _getinput(index, str, "NickName");
+	str = _getinput(index, str, "PhoneNumber");
+	str = _getinput(index, str, "DarkestSecret");
+	if (std::cin.eof())
+		return;
+	std::cout <<GREEN_TEXT"Congrats! contact " << this->_contact[index % 8].getFirstName()
+					 << " is added to phonebook successfully." RESET_COLOR<< std::endl;
+	this->_numberOfContacts++;
+	this->_promptUser("adding");
+}
+
+void PhoneBook::searchContact() {
+   if (this->_numberOfContacts == 0) {
+        std::cout << RED_TEXT"No contacts to display!" RESET_COLOR<< std::endl;
+        return;
+    }
+    this->_viewContacts();
+	this->_fetchContact();
+}
+
+
+
+void PhoneBook::_viewContacts()
 {
 	int num_of_contacts = this->_numberOfContacts >= 8? 8:this->_numberOfContacts;
 	_repeatedString = std::string(45, '-');
 	std::cout << _repeatedString << std::endl;
 
-	std::cout << std::right << std::setw(10) << "|     Index" << "|"
+	std::cout << std::right << std::setw(10) <<BLUE_TEXT"|     Index" << "|"
               << std::setw(10) << "FirstName" << "|"
               << std::setw(10) << "LastName" << "|"
-              << std::setw(10) << "Nickname" << "|" 
+              << std::setw(10) << "Nickname" << "|" RESET_COLOR
 	<< std::endl;
 	_repeatedString = std::string(45, '-');
 	std::cout << _repeatedString << std::endl;
