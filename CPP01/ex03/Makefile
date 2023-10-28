@@ -1,6 +1,6 @@
-NAME = PhoneBook
+NAME = attack
 
-SRC = PhoneBook.cpp Contact.cpp main.cpp
+SRC = Weapon.cpp  HumanA.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 
@@ -29,3 +29,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+

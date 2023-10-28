@@ -1,6 +1,6 @@
-NAME = PhoneBook
+NAME = zombieHorde
 
-SRC = PhoneBook.cpp Contact.cpp main.cpp
+SRC = Zombie.cpp zombieHorde.cpp  main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 
@@ -29,3 +29,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
