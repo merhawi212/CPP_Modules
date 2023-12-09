@@ -1,6 +1,6 @@
-NAME = attack
+NAME = harl
 
-SRC = Weapon.cpp  HumanA.cpp HumanB.cpp main.cpp
+SRC =   Harl.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 
