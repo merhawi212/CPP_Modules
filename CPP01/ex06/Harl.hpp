@@ -24,6 +24,7 @@ class Harl{
         Harl();
 		~Harl();
         void complain(std::string level);
+        static size_t getLevelFunctionsSize();
 
 };
 
