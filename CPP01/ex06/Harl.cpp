@@ -39,7 +39,7 @@ void Harl::complain(std::string level){
 
     for (size_t i = 0; i < arraySize; ++i){
         if (level == levelFunctions[i].level) {
-            levelIndex = static_cast<int>(i);
+            levelIndex = (int)(i);
             break;
         }
     }
@@ -62,7 +62,6 @@ void Harl::complain(std::string level){
             break;
     }
 }
-
 
 
 const Harl::LevelFunctionPair Harl::levelFunctions[] = {

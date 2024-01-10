@@ -5,34 +5,23 @@
 #include <string>
 
 class ClapTrap{
-    private:
+    protected:
         std::string _name;
         unsigned int _hitPoints;  
         unsigned int _energyPoints;
         unsigned int _attackDamage;
-        bool hasEnoughEnergyPoints();
-        bool hasEnoughHitPoints(unsigned int amount);
 
     public:
-        ClapTrap();
+        ClapTrap(const std::string& name);
         ~ClapTrap();
 
-        ClapTrap(const ClapTrap &another);
-        ClapTrap &operator =(const ClapTrap &src);
-        ClapTrap(const std::string& name,  unsigned int hitPoints = 10, unsigned int energyPoints = 10, unsigned int attackDamage = 0);
+        ClapTrap(const ClapTrap& src);
+        ClapTrap &operator =(const ClapTrap &another);
 
-        void attack(const std::string& target);
+
+        virtual void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-
-        void setAttackDamage(unsigned int amount);
-        int getAttackDamage();
-
-        void setEnergyPoints(unsigned int amount);
-        int getEnergyPoints();
-
-        void setHitPoints(unsigned int amount);
-        int getHiPoints();
 
 
 };

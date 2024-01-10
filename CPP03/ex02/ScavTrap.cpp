@@ -7,17 +7,19 @@ ScavTrap::ScavTrap(const std::string& name) :ClapTrap(name)
     this->_energyPoints = 50;
     this->_attackDamage = 20;
 
-    std::cout << "ScavTrap  " << name <<" constructor  called!"  << std::endl;
+    std::cout << "ScavTrap " << name <<" constructor   called!"  << std::endl;
 }
+
 
 ScavTrap::~ScavTrap(){
-    std::cout << "ScavTrap  " << this->_name <<" deconstructor called!" << std::endl;
+    std::cout << "ScavTrap " << this->_name <<" deconstructor called!" << std::endl;
 
 }
+
 
 void ScavTrap::attack(const std::string& target){
     if (this->_energyPoints <= 0){
-        std::cout << "ScavTrap  " << this->_name <<" has no energy points left!" << std::endl;
+        std::cout << "ScavTrap "<< this->_name <<" has no energy points left!" << std::endl;
         return;
     }
     this->_energyPoints -= 1;
@@ -27,5 +29,5 @@ void ScavTrap::attack(const std::string& target){
 
 
 void ScavTrap::guardGate(){
-    std::cout << "ScavTrap  " << this->_name <<" is now in Gate keeper mode" << std::endl;
+    std::cout << "ScavTrap "<< this->_name <<" is now in Gate keeper mode" << std::endl;
 }

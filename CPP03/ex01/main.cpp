@@ -1,12 +1,12 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main( void ) {
 
-    ClapTrap b("B");
-    b.setAttackDamage(2);
-    b.attack("A");
-    b.takeDamage(3);
-    b.beRepaired(2);
+    ScavTrap a("ARF-SC");
+    a.guardGate();
+    a.attack("enemy-a");
+    a.takeDamage(10);
+    a.beRepaired(11);
     
     return 0;
 }

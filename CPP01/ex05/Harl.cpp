@@ -10,7 +10,7 @@ Harl::~Harl(){
 
 void Harl::debug(){
   std::cout << "Debug: Everything is fine. Just checking."
-  << std::endl;
+     << std::endl;
 
 }
 
@@ -51,6 +51,6 @@ const Harl::LevelFunctionPair Harl::levelFunctions[] = {
     {"info", &Harl::info},
     {"warning", &Harl::warning},
     {"error", &Harl::error},
-    {NULL, NULL}  // Sentinel to mark the end of the array
+    {NULL, NULL}  // the end of the array
 };
     

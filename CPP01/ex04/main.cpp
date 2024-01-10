@@ -2,28 +2,6 @@
 #include <fstream>
 #include <string>
 
-bool openInFile(std::string filename, std::ifstream& inputFile){
-    const char* filenameCStr = filename.c_str();
-    inputFile(filenameCStr);
-    if (!inputFile.is_open()) {
-        std::cerr << "Error: Unable to open file " << filename << std::endl;
-        return false;
-    }
-   return true;
-}
-
-bool openOutFile(std::string filename, std::ofstream& outputFile){
-     std::string outputFilename = filename + ".replace";
-    const char* outputFilenameCStr = outputFilename.c_str();
-      outputFile.open(outputFilenameCStr);
-    if (!outputFile.is_open()){
-        std::cerr << "Error: Unable to open output file " << outputFilename << std::endl;
-    
-        return false;
-    }
-   return true;
-}
-
 void processLine(std::string line, std::string& s1, std::string& s2, std::ofstream& outputFile){
     std::string modifiedLine;
     for (size_t i = 0; i < line.length(); ++i) {
@@ -38,22 +16,23 @@ void processLine(std::string line, std::string& s1, std::string& s2, std::ofstre
 }
 
 void replaceInFile(std::string filename, std::string s1, std::string s2){
-    std::ifstream inputFile;
-    if (!openInFile(filename, inputFile)) {
-        return;
+    std::ifstream inputFile(filename.c_str());
+    if (!inputFile){
+        std::cerr << "Error: Unable to open file " << filename.c_str() << std::endl;
+        return ;
     }
 
-    std::ofstream outputFile;
-    if (!openOutFile(filename, outputFile)){
+    std::ofstream outputFile((filename + ".replace").c_str());
+     if (!outputFile){
+       std::cerr << "Error: Unable to open output file " << (filename + ".replace").c_str() << std::endl;
         inputFile.close();
-        return;
+        return ;
     }
 
     std::string line;
     while (std::getline(inputFile, line)){
         processLine(line, s1, s2, outputFile);
     }
-   
     inputFile.close();
     outputFile.close();
 }

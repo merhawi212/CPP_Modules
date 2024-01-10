@@ -1,4 +1,4 @@
-NAME = file
+NAME = replaceFile
 
 SRC =  main.cpp
 
