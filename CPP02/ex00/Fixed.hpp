@@ -5,6 +5,7 @@
 #include <string>
 
 class Fixed{
+	
     private:
         int _fixedPointValue;
         static const int _fractionalBits = 8;

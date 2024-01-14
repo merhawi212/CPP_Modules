@@ -5,15 +5,20 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap: public ClapTrap{
+
     private:
+		ScavTrap(void);
 
     public:
         ScavTrap(const std::string& name);
-        ~ScavTrap();        
-
-       void attack(const std::string& target); //overrided method
+		ScavTrap(const ScavTrap& src);
+        ScavTrap &operator =(const ScavTrap &another);
+        ~ScavTrap();
+        
+        void attack(const std::string& target); //override method
         void guardGate();
 };
+
 
 
 #endif

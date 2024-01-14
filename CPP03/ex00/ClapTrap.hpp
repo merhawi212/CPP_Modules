@@ -11,6 +11,7 @@ class ClapTrap{
         unsigned int _energyPoints;
         unsigned int _attackDamage;
 
+		ClapTrap(void);
     public:
         ClapTrap(const std::string& name);
         ClapTrap(const ClapTrap& src);
@@ -22,7 +23,18 @@ class ClapTrap{
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
 
+		    // setter and getters
+        std::string		getName(void) const;
+        void            setName( std::string name);
 
+        unsigned int    getAttackDamage(void) const;
+        void            setAttackDamage( unsigned int attack_damage);
+
+        unsigned int    getHitPoints(void) const;
+        void            setHitPoints( unsigned int hit_points);
+
+        unsigned int    getEnergyPoints(void) const;
+        void            setEnergyPoints( unsigned int enrgy_points);
 };
 
 #endif

@@ -1,5 +1,10 @@
 #include "FragTrap.hpp"
 
+FragTrap::FragTrap(void)
+{
+
+}
+
 FragTrap::FragTrap(const std::string& name) :ClapTrap(name)
                      
 {
@@ -10,21 +15,28 @@ FragTrap::FragTrap(const std::string& name) :ClapTrap(name)
     std::cout << "FragTrap " << name <<" constructor called!"  << std::endl;
 }
 
+FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src){
+	std::cout << "Copy constructor is called to create a new FragTrap of name " << src.getName() << std::endl;
+	*this = src;
+}
+
+FragTrap &FragTrap::operator =(const FragTrap &another){
+	std::cout << "Copy assignment operator of FragTrap " << another.getName() 
+			<<" assigned to the current object"  << std::endl;
+	if (this != &another){
+		this->_name = another.getName();
+		this->_hitPoints = another.getHitPoints();
+		this->_energyPoints = another.getEnergyPoints();
+		this->_attackDamage = another.getAttackDamage();
+	 }
+    return *this;
+}
+
 FragTrap::~FragTrap(){
-    std::cout << "FragTrap " << this->_name <<" deconstructor called!" << std::endl;
+    std::cout << "FragTrap " << this->_name <<" destructor called!" << std::endl;
 
 }
 
-void FragTrap::attack(const std::string& target){
-    if (this->_energyPoints <= 0){
-        std::cout << "FragTrap "<<  this->_name <<"has no energy points left!" << std::endl;
-        return;
-    }
-    this->_energyPoints -= 1;
-    std::cout << "FragTrap attacks "<< target << ", causing " 
-                << this->_attackDamage << " points of damage!" << std::endl;
-}
-
-void FragTrap::highFivesGuys(){
+void FragTrap::highFivesGuys(void){
     std::cout << "FragTrap "<< this->_name <<" hi fives everyone." << std::endl;
 }

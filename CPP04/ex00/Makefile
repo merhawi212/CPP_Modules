@@ -1,4 +1,4 @@
-NAME = fragtrap
+NAME = animal
 
 SRC =   Animal.cpp Dog.cpp Cat.cpp main.cpp
 

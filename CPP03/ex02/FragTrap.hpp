@@ -4,13 +4,16 @@
 #include "ClapTrap.hpp"
 
 class FragTrap: public ClapTrap{
-    private:
 
+	private:
+		FragTrap(void);
+		
     public:
-        FragTrap(const std::string& name);
+       	FragTrap(const std::string& name);
+		FragTrap(const FragTrap& src);
+        FragTrap &operator =(const FragTrap &another);
         ~FragTrap();
 
-        void attack(const std::string& target); //overrided method
         void highFivesGuys(void);
 };
 

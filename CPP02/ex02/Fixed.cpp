@@ -55,21 +55,26 @@ bool Fixed::operator !=(const Fixed &other) const {
 }
 
 
+
+
 float Fixed::operator +(const Fixed &other) const {
-    return this->_fixedPointValue / ( 1 << _fractionalBits) + other._fixedPointValue  / ( 1 << _fractionalBits);
+    return ((float) this->_fixedPointValue / ( 1 << _fractionalBits))
+			+( (float) other._fixedPointValue  / ( 1 << _fractionalBits));
 }
 
 float Fixed::operator -(const Fixed &other) const {
-    return this->_fixedPointValue / ( 1 << _fractionalBits) - other._fixedPointValue / ( 1 << _fractionalBits);
+    return ((float)this->_fixedPointValue / ( 1 << _fractionalBits) )
+			- ((float) other._fixedPointValue / ( 1 << _fractionalBits));
 }
 
 float Fixed::operator *(const Fixed &other) const {
-    return (float)(this->_fixedPointValue) / ( 1 << _fractionalBits) 
+    return ((float)(this->_fixedPointValue) / ( 1 << _fractionalBits) )
             * (float)(other._fixedPointValue) / ( 1 << _fractionalBits);
 }
 
 float Fixed::operator / (const Fixed &other) const {
-    return (this->_fixedPointValue / ( 1 << _fractionalBits)) / (other._fixedPointValue / ( 1 << _fractionalBits));
+    return ((float)this->_fixedPointValue / ( 1 << _fractionalBits))
+				/ ((float)(other._fixedPointValue / ( 1 << _fractionalBits)));
 }
 
 Fixed& Fixed::operator++() {

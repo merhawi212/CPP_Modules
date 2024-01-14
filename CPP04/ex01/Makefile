@@ -1,6 +1,6 @@
-NAME = zombie
+NAME = animal
 
-SRC = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRC =   Animal.cpp  Brain.cpp Dog.cpp Cat.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 
