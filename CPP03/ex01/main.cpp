@@ -12,8 +12,8 @@ int main( void ) {
     b.beRepaired(2);
 
 	std::cout << "\n-----------------------------------"  << std::endl;
-	std::cout << "Attac damage: " << b.getAttackDamage() << std::endl;
-	std::cout << "enrgy points: " << b.getEnergyPoints() << std::endl;
+	std::cout << "Attack damage: " << b.getAttackDamage() << std::endl;
+	std::cout << "energy points: " << b.getEnergyPoints() << std::endl;
 	std::cout << "hit points: " << b.getHitPoints() << std::endl;
 	std::cout << "-----------------------------------"  << std::endl;
 
