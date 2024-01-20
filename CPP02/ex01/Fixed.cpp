@@ -51,9 +51,10 @@ int Fixed::toInt( void ) const{
        return (int)(roundf((float)(_fixedPointValue) / (1 << _fractionalBits)));
 }
 
+
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed){
     out << fixed.toFloat();
-    return out;
+    return out; 
 }
 
  
