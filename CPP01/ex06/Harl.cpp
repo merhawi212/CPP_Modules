@@ -30,8 +30,6 @@ void Harl::error(){
     std::cout << "[ ERROR ]\nOh no! Something went terribly wrong!\n" << std::endl;
 }
 
-
-
 void Harl::complain(std::string level){
     int levelIndex = -1;
   
@@ -62,7 +60,6 @@ void Harl::complain(std::string level){
             break;
     }
 }
-
 
 const Harl::LevelFunctionPair Harl::levelFunctions[] = {
     {"DEBUG", &Harl::debug},

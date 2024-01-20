@@ -9,6 +9,7 @@ Cat::Cat() : Animal("Cat"){
 Cat::Cat(const std::string& type) : Animal(type){
     std::cout << "Cat of type " << this->_type << "  has born!" <<std::endl;
 }
+
 Cat::Cat(const Cat &src) : Animal(src){
 	std::cout << "Copy constructor of a Cat type " << src._type << " has called!" <<std::endl;
     *this = src;

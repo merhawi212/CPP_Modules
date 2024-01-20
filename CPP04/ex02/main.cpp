@@ -16,7 +16,7 @@ int main()
 		animal[i] = new Dog();
 		animal[i + arraySize / 2] = new Cat();
 	}
-	std::cout "\n***Destroy all objects****"<<std::endl;
+	std::cout << "\n***Destroy all objects****"<<std::endl;
 	for (int i = 0; i < arraySize; i++){
 		 delete animal[i];
 	}

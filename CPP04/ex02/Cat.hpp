@@ -19,7 +19,7 @@ class Cat: public Animal{
 		//custom constructor
         Cat(const std::string& type);
 
-        void makeSound() const; // override method
+        void makeSound() const = 0; // override method
 
 };
 
