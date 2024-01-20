@@ -18,6 +18,7 @@ class Dog : public Animal{
 
         void makeSound() const; // override method
 
+		Brain*  getBrain() const;
 };
 
 #endif

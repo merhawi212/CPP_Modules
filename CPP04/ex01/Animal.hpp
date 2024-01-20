@@ -21,9 +21,8 @@ class Animal{
 		//method
         virtual void makeSound() const;
 
-		//getter & setter
+		//getter
 		std::string const getType() const;
-		void setType(const std::string &type);
 
 };
 

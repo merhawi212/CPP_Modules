@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>  
 
 class Brain{
     protected:
@@ -18,7 +19,7 @@ class Brain{
 		//getter & setter
 		const std::string* getIdeas() const;
 
-		void setIdeas(const std::string* &ideas);
+		void  setIdeas(const std::string* ideas, std::size_t size);
 
 };
 

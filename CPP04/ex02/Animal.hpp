@@ -7,13 +7,22 @@
 class Animal{
     protected:
         std::string _type;
+		//orthodox canonical form
+        Animal(); 
+        Animal(const Animal& src);
+        Animal &operator =(const Animal &another);
+		//custom constructor
+        Animal(const std::string& type);
 
     public:
+        virtual ~Animal();
+
+
 		//method
-        virtual ~Animal() = default;
-        virtual void makeSound() const = 0;
-        std::string const getType() const;
-		void setType(const std::string &type);
+        virtual void makeSound() const  = 0;
+
+		//getter
+		std::string const getType() const;
 
 };
 

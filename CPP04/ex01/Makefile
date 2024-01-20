@@ -1,6 +1,6 @@
 NAME = animal
 
-SRC =   Animal.cpp  Brain.cpp Dog.cpp Cat.cpp main.cpp
+SRC =   Animal.cpp  Brain.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 

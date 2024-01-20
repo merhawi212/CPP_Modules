@@ -3,6 +3,12 @@
 
 Brain::Brain(){
     std::cout << "Brain default constructor called!" <<std::endl;
+	for (int i = 0; i < 100; i++){
+		std::stringstream temp;
+        temp << "idea_" << (i + 1);
+        std::string idea = temp.str();
+		this->_ideas[i] = idea;
+	}
 
 }
 
@@ -33,6 +39,6 @@ Brain::~Brain(){
 const std::string*   Brain::getIdeas() const{
 	return _ideas;
 }
-void  Brain::setIdeas(const std::string* &ideas){
-	    std::copy(ideas, ideas + 100, this->_ideas);
+void  Brain::setIdeas(const std::string* ideas, std::size_t size){
+	    std::copy(ideas, ideas + size, this->_ideas);
 }

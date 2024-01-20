@@ -21,6 +21,10 @@ class Cat: public Animal{
 
         void makeSound() const; // override method
 
+		// getter
+
+		Brain*  getBrain() const;
+
 };
 
 #endif
