@@ -3,14 +3,19 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
 
+# define LOWEST_GRADE 150
+# define HIGHEST_GRADE 1
 # define PRINT_STATEMENT(statement) std::cout << statement << std::endl
+
+class Form;
 
 class Bureaucrat{
     private:
         const std::string _name;
 		int _grade;
-		//setters
+			//setters
 		void setGrade(int newGrade);
 
     public:
@@ -30,12 +35,11 @@ class Bureaucrat{
 
 		void decrementGrade();
 		void incrementGrade();
+		void signForm(Form &form);
 
 		// getters
 		std::string getName() const;
 		int getGrade() const;
-
-		
 		
 };
 
