@@ -1,5 +1,13 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(void){
+ std::cout << "Default Bureaucrat constructor called!" <<std::endl;
+}
+
+Bureaucrat::~Bureaucrat(){
+    std::cout << "Bureaucrat destructor has called!" <<std::endl;
+
+}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name){
 	setGrade(grade);
@@ -7,11 +15,19 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name){
 
 }
 
-
-Bureaucrat::~Bureaucrat(){
-    std::cout << "Bureaucrat destructor has called!" <<std::endl;
-
+Bureaucrat::Bureaucrat(const Bureaucrat& src) {
+	std::cout << "Copy constructor of A Bureaucrat name " << src._name << " has called!" <<std::endl;
+    *this = src;
 }
+Bureaucrat &Bureaucrat::operator =(const Bureaucrat &another){
+	std::cout << "Copy assignment operator of A Bureaucrat name " << another._name << " has called!" <<std::endl;
+	if (this != &another){
+		this->_grade = another._grade;
+	}
+		 
+	return *this;
+}
+
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	// < 1 is considered as too high as 1 and 150 are the highest and lowest, respectively.
@@ -44,13 +60,17 @@ void Bureaucrat::signForm(Form &form){
 	std::string reason;
 	
 	if (form.getGradeToSign() < this->_grade){
-		reason = "grade is lower than the requred one, which is >= " 
-				+ std::to_string(form.getGradeToSign())
-				 + " (remember " + std::to_string(form.getGradeToSign())  + " is > " + std::to_string(this->_grade) + ")";
+		int requiredGradeToSign = form.getGradeToSign();
+		std::stringstream ss; // Create a stringstream
+		std::stringstream ss2;
+		ss << requiredGradeToSign; // Insert the integer into the stringstream
+		ss2 << this->getGrade();
+		reason = "grade is lower than the requred one, which is >= " + ss.str()
+				 + " (remember " + ss.str()  + " is > " + ss2.str() + ")";
 	}
 	else
 		reason = "something wrong is there with the form!";
-	if (form.getIsSigned())
+	if (form.isSigned())
 		std::cout << this->_name <<  " signed " << form.getName() << std::endl;
 	else
 		std::cout << this->_name <<  " couldn’t sign " << form.getName()

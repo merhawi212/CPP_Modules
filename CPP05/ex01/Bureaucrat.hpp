@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>  // Create a stringstream
+
 #include "Form.hpp"
 
 # define LOWEST_GRADE 150
@@ -17,11 +19,17 @@ class Bureaucrat{
 		int _grade;
 			//setters
 		void setGrade(int newGrade);
+		Bureaucrat(void);
 
     public:
-
-		Bureaucrat(const std::string& name, int grade);
+		// Orthodox connonical form
 		~Bureaucrat();
+        Bureaucrat(const Bureaucrat& src);
+        Bureaucrat &operator =(const Bureaucrat &another);
+
+		//custom constructor
+		Bureaucrat(const std::string& name, int grade);
+
 
 		class GradeTooHighException : public std::exception {
 				public:

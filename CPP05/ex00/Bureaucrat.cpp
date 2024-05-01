@@ -1,16 +1,32 @@
 #include "Bureaucrat.hpp"
 
 
+Bureaucrat::Bureaucrat(void){
+ std::cout << "Default Bureaucrat constructor called!" <<std::endl;
+}
+
+Bureaucrat::~Bureaucrat(){
+    std::cout << "Bureaucrat destructor has called!" <<std::endl;
+
+}
+
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name){
 	setGrade(grade);
     std::cout << "Bureaucrat constructor called!" <<std::endl;
 
 }
 
-
-Bureaucrat::~Bureaucrat(){
-    std::cout << "Bureaucrat destructor has called!" <<std::endl;
-
+Bureaucrat::Bureaucrat(const Bureaucrat& src) {
+	std::cout << "Copy constructor of A Bureaucrat name " << src._name << " has called!" <<std::endl;
+    *this = src;
+}
+Bureaucrat &Bureaucrat::operator =(const Bureaucrat &another){
+	std::cout << "Copy assignment operator of A Bureaucrat name " << another._name << " has called!" <<std::endl;
+	if (this != &another){
+		this->_grade = another._grade;
+	}
+		 
+	return *this;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {

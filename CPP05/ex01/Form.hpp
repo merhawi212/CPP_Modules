@@ -16,15 +16,20 @@ class Form{
         const std::string _name;
 		const int _gradeToSign;
 		const int _gradeToExecute;
-		bool _isSigned;
+		bool _signed;
 
-			
 		void validateGrade(const int grade);
+		
+		Form(void);
 
     public:
-
-		Form(const std::string& name, const int gradeToSign, const int gradeToExecute);
+		// Orthodox connonical form
 		~Form();
+        Form(const Form& src);
+        Form &operator =(const Form &another);
+
+		// custom constructor
+		Form(const std::string& name, const int gradeToSign, const int gradeToExecute);
 
 		class GradeTooHighException : public std::exception {
 				public:
@@ -40,13 +45,13 @@ class Form{
 
 		// getters
 		std::string getName() const;
-		bool getIsSigned() const;
+		bool isSigned() const;
 		int getGradeToSign() const;
 		int getGradeToExecute() const;
 		
 };
 
-std::ostream &operator<<(std::ostream &out, const Form &Form);
+std::ostream &operator<<(std::ostream &out, const Form &form);
 
 
 #endif // FORM_HPP

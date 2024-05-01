@@ -34,10 +34,16 @@ int main()
 	
 	PRINT_STATEMENT("\n***Test 3: Decrement***\n");
 	{
-		Bureaucrat bureaucrat("Sam", 150);
+		Bureaucrat bureaucrat("Sam", 40);
 		try {
 				bureaucrat.decrementGrade();  
 				PRINT_STATEMENT("Bureaucrat grade after decremented: " << bureaucrat);
+				// Bureaucrat b2(bureaucrat);
+				// Bureaucrat bureaucrat3("Sam", 10);
+				// b2 = bureaucrat3;
+				// PRINT_STATEMENT("B2: " <<b2);
+				// PRINT_STATEMENT("B3: " <<bureaucrat3);
+
 		} catch (const Bureaucrat::GradeTooLowException& e) {
 				std::cerr << e.what() << std::endl;
 		}
