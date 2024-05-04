@@ -1,6 +1,7 @@
 NAME = bureaucrat
 
-SRC =   Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp main.cpp
+SRC =   Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp Intern.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 

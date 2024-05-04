@@ -3,6 +3,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
+
 
 
 int main()
@@ -133,6 +135,21 @@ PRINT_STATEMENT("\n***Test 5: Integration Bureaucrat with Presidential testing**
 		std::cerr << e.what() << std::endl;
 	}
 
+ try {
+		PRINT_STATEMENT("\n***Test 6: Testing Intern***\n");
+		{
+			Intern someRandomIntern;
+			AForm* rrf;
+			rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+			if (rrf){
+				PRINT_STATEMENT(rrf->getName());
+				delete rrf;
+
+			}
+		}
+ 	}catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
+	}
 
 	return 0;
 

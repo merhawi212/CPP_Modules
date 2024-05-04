@@ -9,7 +9,7 @@ RobotomyRequestForm::~RobotomyRequestForm(){
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) 
-			: AForm("Robotomym", 72, 45), _target(target)
+			: AForm("Robotomy", 72, 45), _target(target)
 {
     std::cout << "RobotomyRequestForm constructor has called!" <<std::endl;
 }
