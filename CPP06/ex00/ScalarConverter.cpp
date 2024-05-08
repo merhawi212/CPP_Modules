@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+
 ScalarConverter::ScalarConverter(void){
     std::cout << "Default ScalarConverter constructor called."  << std::endl;
 }
@@ -18,87 +19,74 @@ ScalarConverter &ScalarConverter::operator =(const ScalarConverter &){
 }
 
 
+void ScalarConverter::fromChar(){
+    int_type = static_cast<int>(char_type);
+    float_type = static_cast<float>(char_type);
+    double_type = static_cast<double>(char_type);
 
-void fromChar(){
-    //  char c;
-    // if (isPrintable(literal[0])){
-    //     std::cout << "char: |" << literal << "|" << std::endl;
-    // }
-    // else if ((std::isdigit(literal[0]) && isNumeric(literal[0])))  {
-    //         int asciiValue;
-    //     std::istringstream(literal) >> asciiValue;
-    //     c = static_cast<char>(asciiValue);
-    //     std::cout << "char: '" << c << "'" << std::endl;
-    // } 
-    // else {
-    //     std::cout << "char: Non displayable" << std::endl;
-    // }
     std::cout << "Char: '" << char_type << "'"<<std::endl;
-    std::cout << "Int: " << static_cast<int>(char_type) << std::endl;
-    td::cout << "Float: " << static_cast<float>(char_type) << "f" << std::endl;
-    std::cout << "Double: " << static_cast<double>(double_type) << std::endl;
+    std::cout << "Int: " << int_type << std::endl;
+    std::cout << "Float: " << std::fixed << std::setprecision(2) << float_type << "f" << std::endl;
+    std::cout << "Double: " << double_type << std::endl;
 }
 
-void fromInt(){
+void ScalarConverter::fromInt(){
     
     if (int_type >= 32 && int_type <= 126){
-        std::cout << "Char: '" << static_cast<char>(int_type) << "'"<<std::endl;
-    }else{
+        char_type = static_cast<char>(int_type);
+        std::cout << "Char: '" << char_type << "'"<<std::endl;
+    }else
         std::cout << "Char: Non displayable"<<std::endl;
-    }
     std::cout << "Int: " << int_type << std::endl;
-    std::cout << "Float: " << static_cast<float>(int_type) << "f" << std::endl;
-    std::cout << "Double: " << static_cast<double>(int_type) << std::endl;
+    float_type = static_cast<float>(int_type);
+    double_type = static_cast<double>(int_type);
+    std::cout << "Float: " << std::fixed << std::setprecision(2) << float_type << "f" << std::endl;
+    std::cout << "Double: " << double_type << std::endl;
 }
 
-void fromFloat(){
-    
+void ScalarConverter::fromFloat(){
     if (float_type >= 32 && float_type <= 126){
-        std::cout << "Char: '" << static_cast<char>(float_type) << "'"<<std::endl;
-    }else{
+        char_type = static_cast<char>(float_type);
+        std::cout << "Char: '" << char_type << "'"<<std::endl;
+    }else
         std::cout << "Char: Non displayable"<<std::endl;
-    }
     if (float_type >= INT_MIN && float_type <= INT_MAX){
-        std::cout << "Int: " << static_cast<int>(float_type) << std::endl;
-    }else{
+        int_type = static_cast<int>(float_type);
+        std::cout << "Int: " << int_type << std::endl;
+    }else
         std::cout << "Int: Non displayable"<<std::endl;
-    }
-    std::cout << "Float: " << float_type << "f" << std::endl;
-    std::cout << "Double: " << static_cast<double>(float_type) << std::endl;
+    double_type = static_cast<double>(float_type);
+    std::cout << "Float: " << std::fixed << std::setprecision(2)  << float_type << "f" << std::endl;
+    std::cout << "Double: " << double_type << std::endl;
 }
 
-void fromDouble(){
+void ScalarConverter::fromDouble(){
      if (double_type >= 32 && double_type <= 126){
-        std::cout << "Char: '" << static_cast<char>(double_type) << "'"<<std::endl;
+         char_type = static_cast<char>(double_type);
+        std::cout << "Char: '" << char_type << "'"<<std::endl;
     }else{
         std::cout << "Char: Non displayable"<<std::endl;
     }
     if (double_type >= INT_MIN && double_type <= INT_MAX){
-        std::cout << "Int: " << static_cast<int>(double_type) << std::endl;
+        int_type = static_cast<int>(double_type);
+        std::cout << "Int: " << int_type << std::endl;
     }else{
         std::cout << "Int: Non displayable"<<std::endl;
     }
     if (double_type >= FLT_MIN && double_type <= FLT_MAX){
-        std::cout << "Float: " << static_cast<float>(double_type) << "f" << std::endl;
+        float_type = static_cast<float>(double_type);
+        std::cout << "Float: " << std::fixed << std::setprecision(2)<< float_type << "f" << std::endl;
     }else{
         std::cout << "Float: Non displayable"<<std::endl;
     }
     std::cout << "Double: " << double_type << std::endl;
 }
 
-void  printPseudo(){
+void  ScalarConverter::fromPseudo(){
     std::cout << "Char: impossible" << std::endl;
     std::cout << "Int: impossible" << std::endl;
-    td::cout << "Float: " << float_type << "f" << std::endl;
+    std::cout << "Float: " << float_type << "f" << std::endl;
     std::cout << "Double: " << double_type << std::endl;
-    // if (literal == "-inf" || literal == "+inf" || literal == "nan") {
-    //     std::cout << "Double: " << literal << std::endl;
-    //     std::cout << "Float: " << literal << "f" << std::endl;
-    // } else if (literal == "-inff" || literal == "+inff" || literal == "nanf") {
-    //     std::string double_t = literal.substr(0, literal.size() - 1); // Exclude last 'f' for double
-    //     std::cout << "Double: " << double_t << std::endl;
-    //     std::cout << "Float: " << literal << std::endl;
-    // }
 }
 
 
@@ -129,7 +117,7 @@ ScalarConverter::e_types ScalarConverter::getLiteralType() {
 }
 
 void ScalarConverter::convert(const std::string &literal) {
-        parseInput(literal); // Call member function
+        parseInput(literal); // Call member function to parse the literal
         switch (getLiteralType()) {
             case CHAR_TYPE:
                  fromChar();
@@ -144,51 +132,15 @@ void ScalarConverter::convert(const std::string &literal) {
                 fromDouble();
                 break;
             case PSEUDOS_TYPE:
-                printPseudo();
+                fromPseudo();
                 break;
             default:
-                throw new InvalidType();
-        }
-
-
-
- // else if (literal.size() > 1 && std::isdigit(value)) {
-        //     int asciiValue;
-        //     std::istringstream(literal) >> asciiValue;
-        //     c = static_cast<char>(asciiValue);
-        //     std::cout << "char: '" << c << "'" << std::endl;
-        // } 
-        // Convert to int
-        int i;
-        std::stringstream intStream(literal);
-        if (intStream >> i) {
-            std::cout << "int: " << i << std::endl;
-        } else {
-            std::cout << "int: impossible" << std::endl;
-        }
-
-        // Convert to float
-        float f;
-        std::stringstream floatStream(literal);
-        if (floatStream >> f) {
-            std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-        } else {
-            std::cout << "float: impossible" << std::endl;
-        }
-
-        double d;
-        std::stringstream doubleStream(literal);
-        if (doubleStream >> d) {
-            std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
-        } else if (literal == "nan" || literal == "-inf" || literal == "+inf") {
-            std::cout << "double: " << literal << std::endl;
-        } else {
-            std::cout << "double: impossible" << std::endl;
+                throw ScalarConverter::InvalidType();
         }
     
  }
 
  
 const char *ScalarConverter::InvalidType::what() const throw(){
-    return ("Invalid input type! Please provide valid input. Valid inputs are Char, Int, Float, Double and Pseudo.");
+    return "Invalid input type! Please provide valid input. Valid inputs are Char, Int, Float, Double and Pseudo.";
  }

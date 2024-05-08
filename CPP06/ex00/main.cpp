@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+
 void print(const std::string &literal){
         // Convert to int
         int i;
@@ -30,56 +31,21 @@ void print(const std::string &literal){
             std::cout << "double: impossible" << std::endl;
         }
 }
+
 int main (int argc, char **argv){
 
-//    if (argc < 2) {
-//         std::cerr << "Usage: " << argv[0] << " <literal1> <literal2> <literal3> ..." << std::endl;
-//         return 1;
-//     }
+   if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <literal1>" << std::endl;
+        return 1;
+    }
 
-    // for (int i = 1; i < argc; ++i) {
-    //     std::cout << "Literal: " << argv[i] << std::endl;
-    //     ScalarConverter::convert(argv[i]);
-    //     std::cout << std::endl;
-    // }
-    (void)argc;
-    // if (isalpha(argv[1][0]))
-    //     print(argv[1]);
+    try {
+        std::cout << "Input: " << argv[1] << std::endl;
+        ScalarConverter::convert(argv[1]);
+    }catch(const ScalarConverter::InvalidType & e){
+        std::cout << e.what() << std::endl;
+    }
 
-    std::cout << "Literal: " << argv[1] << std::endl;
-    char *endptr;
-	double temp = strtod((argv[1]), &endptr);
-    float f = strtof((argv[1]), NULL);
-
-    
-    std::cout << "flaot |"<< f << "|" << std::endl;
-    std::cout << "flaot_d |"<< strtod((argv[1]), NULL) << "|" << std::endl;
-    std::cout << "double |"<< temp << "|" << std::endl;
-    std::cout << "int |"<< static_cast<int> (temp) << "|" << std::endl;
-
-
-
-    std::cout << "endptr |" << endptr << "|" << std::endl;
-    
     return 0;
 }
 
-
-// #include <iostream>
-// #include <cctype>
-
-// bool isPrintable(char c) {
-//     return (c >= 32 && c <= 126);
-// }
-
-// int main() {
-//     char c = -42; // Example character
-//     bool ispri = isPrintable(c);
-//     std::cout << ispri << std::endl;
-//     if (isPrintable(c)) {
-//         std::cout << c << " is a printable character." << std::endl;
-//     } else {
-//         std::cout << c << " is not a printable character." << std::endl;
-//     }
-//     return 0;
-// }

@@ -1,4 +1,4 @@
-le#ifndef SCALARCONVERTER_HPP
+#ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
@@ -26,10 +26,10 @@ class ScalarConverter {
     
         static e_types literal_type; // Initialize to UNKNOWN
 
-        static char char_type = 'c';
-        static int int_type = 0;
-        static float float_type = 0.0f;
-        static double double_type = 0.0;
+        static char char_type;
+        static int int_type;
+        static float float_type;
+        static double double_type;
 
 
 
@@ -42,6 +42,14 @@ class ScalarConverter {
         static int isFloat(const std::string &literal);
         static int isDouble(const std::string &literal);
         static int isPseudo(const std::string &literal);
+
+        // print
+        static void fromChar();
+        static void fromInt();
+        static void fromFloat();
+        static void fromDouble();
+        static void fromPseudo();
+
 
         ScalarConverter(void);  //orthodox cannonical form
 
