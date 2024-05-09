@@ -59,7 +59,7 @@ void Bureaucrat::incrementGrade(){
 void Bureaucrat::signForm(Form &form){
 	std::string reason;
 	
-	if (form.getGradeToSign() < this->_grade){
+	if (this->_grade > form.getGradeToSign()){
 		int requiredGradeToSign = form.getGradeToSign();
 		std::stringstream ss; // Create a stringstream
 		std::stringstream ss2;

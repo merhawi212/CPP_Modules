@@ -35,23 +35,35 @@ int ScalarConverter::isInt(const std::string &literal){
     // Conversion successful, number is valid
     int_type = static_cast<int>(tmp);
     literal_type = INT_TYPE;
-    std::cout << "int is: |" << int_type << "| literal: " << literal << std::endl;
     return INT_TYPE; 
 }
 
-int ScalarConverter::isFloat(const std::string &literal){
-    if (isalpha(literal[0]) || literal.find('.') == std::string::npos)
-        return (-1);
-    // Check if the string ends with 'f' but not more than once
-    int length = literal.length();
-    if (length <= 0 && literal[length - 1] != 'f') {
-        return -1;
+int validateInput(const std::string &literal) {
+    if (literal.empty() || !(isdigit(literal[0]) || literal[0] == '+' || literal[0] == '-')
+		 || literal.find('.') == std::string::npos) {
+        return 0;
     }
+    // Find the index of the decimal point
+    unsigned long indexOfDot = literal.find('.');
+    // dot found at the end or Check if there's at least one digit after the decimal point
+    if ((indexOfDot == (literal.length() - 1)) || !isdigit(literal[indexOfDot + 1])) 
+        return 0;
+    return 1;
+}
+
+int ScalarConverter::isFloat(const std::string &literal){
+	//check if the first char is digit or it has dot or has at least one digit after dot
+    if (!validateInput(literal))
+		return -1;
+	  // Check if the string ends with 'f' but not more than once
+	int length = literal.length();
+    if (literal[length - 1] != 'f')
+        return -1;
+	
     // Convert std::string to const char*
     const char* str = literal.c_str();
-
     double tmp = strtod(str, NULL);
-    if (tmp < FLT_MIN || tmp > FLT_MAX) // check if its outside the float range
+    if (abs(tmp) > FLT_MAX) // check if it's outside the float range
         return -1;
 
     int countF = 0;
@@ -61,33 +73,29 @@ int ScalarConverter::isFloat(const std::string &literal){
     }
     if (countF != 1)
         return -1; // More or less than one 'f'
-
          // Conversion successful, number is valid
     float_type = static_cast<float>(tmp);
     literal_type = FLOAT_TYPE;
-     std::cout << "float is: |" << float_type << "| literal: " << literal << std::endl;
     return FLOAT_TYPE;
 }
 
 int ScalarConverter::isDouble(const std::string &literal){
-    //check if the first char is alpha or it has .
-    if (isalpha(literal[0]) || literal.find('.') == std::string::npos) 
-        return (-1);
-    
+    //check if the first char is digit or it has dot or has at least one digit after dot
+    if (!validateInput(literal))
+		return -1;
     // Convert std::string to const char*
     const char* str = literal.c_str();
-
     char *endptr;
     double tmp = strtod(str, &endptr);
     // Check if the conversion failed
     if (*endptr != '\0') 
         return -1;
-    if (tmp < DBL_MIN || tmp > DBL_MAX) // check if its outside the double range
-        return -1;
+// check if its outside the double range
+    if (abs(tmp) > DBL_MAX)
+		return -1;
      // Conversion successful, number is valid
     double_type = static_cast<double>(tmp);
     literal_type = DOUBLE_TYPE;
-     std::cout << "double is: |" << double_type << "| literal: " << literal << std::endl;
     return DOUBLE_TYPE;
 }
 

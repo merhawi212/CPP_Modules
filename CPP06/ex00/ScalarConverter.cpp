@@ -73,7 +73,7 @@ void ScalarConverter::fromDouble(){
     }else{
         std::cout << "Int: Non displayable"<<std::endl;
     }
-    if (double_type >= FLT_MIN && double_type <= FLT_MAX){
+    if (abs(double_type) <= FLT_MAX){
         float_type = static_cast<float>(double_type);
         std::cout << "Float: " << std::fixed << std::setprecision(2)<< float_type << "f" << std::endl;
     }else{

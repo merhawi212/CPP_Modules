@@ -4,12 +4,10 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <iomanip> 
 #include <limits>
-#include <iomanip>  // need to check if its allowed
-#include <cstdlib>
-#include <limits.h>
 #include <float.h>
-
+#include <cstdlib>
 
         
 class ScalarConverter {
@@ -24,7 +22,7 @@ class ScalarConverter {
             PSEUDOS_TYPE
         };
     
-        static e_types literal_type; // Initialize to UNKNOWN
+        static e_types literal_type; 
 
         static char char_type;
         static int int_type;
@@ -52,13 +50,13 @@ class ScalarConverter {
 
 
         ScalarConverter(void);  //orthodox cannonical form
+		ScalarConverter(const ScalarConverter& src);
+        ScalarConverter &operator =(const ScalarConverter& );
 
     public:
         //orthodox cannonical form
         ~ScalarConverter();
-        ScalarConverter(const ScalarConverter& src);
-        ScalarConverter &operator =(const ScalarConverter& );
-
+      
         class InvalidType : public std::exception {
 				public:
 					virtual const char* what() const throw();

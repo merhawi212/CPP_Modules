@@ -31,7 +31,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator =(const ShrubberyCreation
 
  void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 	if (!this->isSigned()){
-		throw GradeTooLowException();
+		throw AFormNotSignedException();
 	}
 	if (executor.getGrade() > this->getGradeToExecute()){
 		    throw GradeTooLowException(); 
@@ -42,7 +42,22 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator =(const ShrubberyCreation
         std::cerr << "Error: Unable to open output file " << filename << std::endl;
         return;
     }
-    ofs << "ASCII trees\n";
+    ofs << "	   *		" <<  "\n" 
+		<< "	  ***		" << "\n" 
+		<< "	 *****		"<< "\n" 
+		<< "	*******	    "<< "\n" 
+		<< "   **********	"<< "\n" 
+		<< "  ************	"<< "\n" 
+		<< " ************** "<< "\n" 
+		<< "****************"<< "\n" 
+		<< " 	 ******	    "<< "\n" 
+		<< " 	 ******	    "<< "\n" 
+		<< " 	 ******	    "<< "\n" 
+		<< " 	 ******	    "<< "\n" 
+		<< " 	 ******	    "<< "\n" 
+		<< "@ @ @@@@ @@#@@@@"<< "\n" 
+		<< "@ @@ @ @@@@ @@#@" << "\n" 
+	<< std::endl;
 
     // Closing the file stream (not strictly necessary here since it's closed automatically when the ofstream object is destroyed)
     ofs.close();

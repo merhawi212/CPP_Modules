@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 
+# define LOWEST_GRADE 150
+# define HIGHEST_GRADE 1
+
 # define PRINT_STATEMENT(statement) std::cout << statement << std::endl
 
 class Bureaucrat{
