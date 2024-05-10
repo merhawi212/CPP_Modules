@@ -4,10 +4,6 @@
 #include "C.hpp"
 
 
-Base::Base(void){
-    std::cout << "Base class constructor called." << std::endl;
-}
-
 Base::~Base(){
     std::cout << "Base class destructor called." << std::endl;
 }

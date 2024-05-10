@@ -1,6 +1,6 @@
-NAME = serialization
+NAME = serializer
 
-SRC =   Serialization.cpp main.cpp
+SRC =   Serializer.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 

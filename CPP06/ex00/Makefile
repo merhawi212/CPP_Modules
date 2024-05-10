@@ -1,6 +1,6 @@
 NAME = convert
 
-SRC =    ScalarConverterUtils.cpp ScalarConverter.cpp main.cpp
+SRC =    ScalarConverter.cpp  ScalarConverterUtils.cpp main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 

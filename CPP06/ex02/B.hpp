@@ -5,11 +5,7 @@
 
 class B: public Base{
 
-    private:
 
-    public:
-        B();
-        ~B();    
 };
 
 #endif // B_HPP

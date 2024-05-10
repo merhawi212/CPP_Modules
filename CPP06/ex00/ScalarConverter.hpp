@@ -5,11 +5,13 @@
 #include <string>
 #include <sstream>
 #include <iomanip> 
-#include <limits>
+#include <climits>
+#include <cfloat>
 #include <float.h>
+
 #include <cstdlib>
 
-        
+
 class ScalarConverter {
     private:
         
@@ -59,7 +61,7 @@ class ScalarConverter {
       
         class InvalidType : public std::exception {
 				public:
-					virtual const char* what() const throw();
+					 virtual  const char* what() const throw();
 		};
 
         // method

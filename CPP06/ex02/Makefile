@@ -1,6 +1,6 @@
 NAME = realtype
 
-SRC =   Base.cpp A.cpp B.cpp C.cpp main.cpp
+SRC =   Base.cpp  main.cpp
 
 BUILD_DIR = ./.build
 OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o)) 

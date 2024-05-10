@@ -91,7 +91,6 @@ void  ScalarConverter::fromPseudo(){
 
 
 int ScalarConverter::parseInput(const std::string &literal){
-   
     if (literal.size() == 1){
         if (isSingleCharOrInt(literal) == INT_TYPE)
            return INT_TYPE;
@@ -141,6 +140,6 @@ void ScalarConverter::convert(const std::string &literal) {
  }
 
  
-const char *ScalarConverter::InvalidType::what() const throw(){
-    return "Invalid input type! Please provide valid input. Valid inputs are Char, Int, Float, Double and Pseudo.";
+const char* ScalarConverter::InvalidType::what() const throw(){
+    return ("Invalid input! Please provide valid input. Valid inputs are Char, Int, Float, Double and Pseudo in their ranges, overflow is also consider as invalid.");
  }

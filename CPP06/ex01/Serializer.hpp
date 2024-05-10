@@ -1,5 +1,5 @@
-#ifndef SERIALIZATION_HPP
-#define SERIALIZATION_HPP
+#ifndef SERIALIZER_HPP
+#define SERIALIZER_HPP
 
 #include <iostream>
 #include <string>
@@ -14,18 +14,19 @@ struct Data {
     Data *next;
 };
 
-class Serialization{
+class Serializer{
 
     private:
-        Serialization(void);
-        Serialization(const Serialization& src);
-        Serialization &operator =(const Serialization& );
+        Serializer(void);
+        Serializer(const Serializer& src);
+        Serializer &operator =(const Serializer& );
         
     public:
-        ~Serialization();
+        ~Serializer();
 
        static uintptr_t serialize(Data* ptr);
        static Data* deserialize(uintptr_t raw);
 
 };
-#endif //SERIALIZATION_HPP
+
+#endif //SERIALIZER_HPP

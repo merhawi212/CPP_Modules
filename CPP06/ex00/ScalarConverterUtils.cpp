@@ -23,12 +23,14 @@ int ScalarConverter::isSingleCharOrInt(const std::string &literal){
 }
 
 int ScalarConverter::isInt(const std::string &literal){
-     if (isalpha(literal[0]) || literal.find('.') != std::string::npos)
+     if (literal.empty() || !(isdigit(literal[0]) || literal[0] == '+' || literal[0] == '-')  
+	 		|| literal.find('.') != std::string::npos)
         return (-1);
     // Convert std::string to const char*
     const char* str = literal.c_str();
     char *endptr;
     double tmp = strtod(str, &endptr);
+
     // Check if the conversion failed
     if (*endptr != '\0' || tmp < INT_MIN || tmp > INT_MAX)
         return -1;
@@ -61,11 +63,19 @@ int ScalarConverter::isFloat(const std::string &literal){
         return -1;
 	
     // Convert std::string to const char*
+	char *endptr;
     const char* str = literal.c_str();
-    double tmp = strtod(str, NULL);
-    if (abs(tmp) > FLT_MAX) // check if it's outside the float range
+    double tmp = strtod(str, &endptr);
+    if (abs(tmp) > FLT_MAX) {// check if it's outside the float range
         return -1;
+	}
 
+	while (*endptr){
+		if (!isdigit(*endptr) && *endptr != 'f' )
+			return -1;
+		endptr++;
+	}
+	
     int countF = 0;
     for (int i = 0; i < length; ++i) {
         if (literal[i] == 'f')

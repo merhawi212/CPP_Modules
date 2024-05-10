@@ -5,11 +5,7 @@
 
 class C: public Base{
 
-    private:
-
-    public:
-        C();
-        ~C();
+  
 
 };
 
