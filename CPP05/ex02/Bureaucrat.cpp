@@ -81,11 +81,10 @@ void Bureaucrat::executeForm(AForm const & form) const{
 		try {
         	form.execute(*this); // Call the execute function of the provided form
 			std::cout << this->_name << " executed " << form.getName() << std::endl;
-		} catch (const AForm::AFormNotSignedException& e) {
+		} catch (const std::exception& e) {
 			std::cerr << _name << " cannot execute " << form.getName() << ". " << e.what() << std::endl;
-		} catch (const AForm::GradeTooLowException& e) {
-			std::cerr << _name << " cannot execute " << form.getName() << ". " << e.what() << std::endl;
-		}
+		} 
+		
 }
 	// getters
 std::string Bureaucrat::getName() const{

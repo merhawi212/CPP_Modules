@@ -31,19 +31,34 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator =(const ShrubberyCreation
 
  void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 	if (!this->isSigned()){
-		throw GradeTooLowException();
+		throw AFormNotSignedException();
 	}
 	if (executor.getGrade() > this->getGradeToExecute()){
+		
 		    throw GradeTooLowException(); 
 	}
 	std::string filename = this->_target + "_shrubbery";
     std::ofstream ofs(filename.c_str());
     if (!ofs) {
-        std::cerr << "Error: Unable to open output file " << filename << std::endl;
-        return;
+		std::cerr << "Error: Unable to open output file " << filename << std::endl;
+		 throw GenericException(); 
     }
-    ofs << "ASCII trees\n";
+    ofs << "      *\n"
+        << "     ***\n"
+        << "    *****\n"
+        << "   *******\n"
+        << "  *********\n"
+        << " ***********\n"
+        << "*************\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "  @@@@@@@@@@@\n"
+        << " @@@@ @ @@@@ ~\n"
+        << "+~ +x @@ ~ @ @ ~ \n"
+        << std::endl;
 
-    // Closing the file stream (not strictly necessary here since it's closed automatically when the ofstream object is destroyed)
     ofs.close();
  }

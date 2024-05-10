@@ -45,9 +45,12 @@ const char* AForm::GradeTooLowException::what() const throw() {
 }
 
 const char* AForm::AFormNotSignedException::what() const throw() {
-	// > 150 is considered as too low as 1 and 150 are the highest and lowest, respectively.
 	return "Form not signed! It must be signed first in order to execute.";
 }
+const char* AForm::GenericException::what() const throw() {
+	return "Some thing went wrong!";
+}
+
 // getters
 std::string AForm::getName() const{
 	return this->_name;

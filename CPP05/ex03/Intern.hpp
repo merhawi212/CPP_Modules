@@ -23,15 +23,9 @@ class Intern{
             AForm* (*createFunc)(const std::string&);
         };
 
-        static AForm* createShrubberyCreationForm(const std::string &target) {
-             return new ShrubberyCreationForm(target);
-        }
-        static AForm* createRobotomyRequestForm(const std::string &target) { 
-            return new RobotomyRequestForm(target); 
-        }
-        static AForm* createPresidentialPardonForm(const std::string &target) { 
-            return new PresidentialPardonForm(target);
-        }
+        static AForm* createShrubberyCreationForm(const std::string &target);
+        static AForm* createRobotomyRequestForm(const std::string &target);
+        static AForm* createPresidentialPardonForm(const std::string &target);
 
         static const FormCreationPair formCreators[];
 

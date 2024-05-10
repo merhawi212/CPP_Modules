@@ -37,7 +37,7 @@ int main()
 
 	PRINT_STATEMENT("\n***Test 3: Integration Bureaucrat with Shrubbery Creation Form testing***\n");
 	try{
-			Bureaucrat bureaucrat("Abrham Lincon", 130);
+			Bureaucrat bureaucrat("Abrham Lincon", 139);
 			PRINT_STATEMENT(bureaucrat);
 
 			ShrubberyCreationForm form("ShrubberyCreationForm");

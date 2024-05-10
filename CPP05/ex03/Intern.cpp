@@ -21,13 +21,30 @@ Intern &Intern::operator =(const Intern &){
 	return *this;
 }
 
-AForm* Intern::makeForm(const std::string &formName, const std::string &target){
-    std::string lowercaseFormName = formName;
-        // Convert formName to lowercase
-        for (size_t i = 0; i < lowercaseFormName.size(); ++i) {
-            lowercaseFormName[i] = std::tolower(lowercaseFormName[i]);
+AForm* Intern::createShrubberyCreationForm(const std::string &target) {
+             return new ShrubberyCreationForm(target);
         }
+AForm* Intern::createRobotomyRequestForm(const std::string &target) { 
+	return new RobotomyRequestForm(target); 
+}
+AForm* Intern::createPresidentialPardonForm(const std::string &target) { 
+	return new PresidentialPardonForm(target);
+}
 
+AForm* Intern::makeForm(const std::string &formName, const std::string &target){
+	if (formName.empty()){
+		 std::cerr << "From name is not provided" << std::endl;
+		return NULL;
+	}
+	if (target.empty()){
+		 std::cerr << "Target input is not provided" << std::endl;
+		return NULL;
+	}
+    std::string lowercaseFormName = formName;
+    // Convert formName to lowercase
+	for (size_t i = 0; i < lowercaseFormName.size(); ++i) {
+		lowercaseFormName[i] = std::tolower(lowercaseFormName[i]);
+	}
     for (const FormCreationPair *pair = formCreators; pair->name; ++pair) {
             if (lowercaseFormName == pair->name) {
                 AForm* form = pair->createFunc(target);

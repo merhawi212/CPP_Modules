@@ -39,26 +39,25 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator =(const ShrubberyCreation
 	std::string filename = this->_target + "_shrubbery";
     std::ofstream ofs(filename.c_str());
     if (!ofs) {
-        std::cerr << "Error: Unable to open output file " << filename << std::endl;
-        return;
+		std::cerr << "Error: Unable to open output file " << filename << std::endl;
+		 throw GenericException(); 
     }
-    ofs << "	   *		" <<  "\n" 
-		<< "	  ***		" << "\n" 
-		<< "	 *****		"<< "\n" 
-		<< "	*******	    "<< "\n" 
-		<< "   **********	"<< "\n" 
-		<< "  ************	"<< "\n" 
-		<< " ************** "<< "\n" 
-		<< "****************"<< "\n" 
-		<< " 	 ******	    "<< "\n" 
-		<< " 	 ******	    "<< "\n" 
-		<< " 	 ******	    "<< "\n" 
-		<< " 	 ******	    "<< "\n" 
-		<< " 	 ******	    "<< "\n" 
-		<< "@ @ @@@@ @@#@@@@"<< "\n" 
-		<< "@ @@ @ @@@@ @@#@" << "\n" 
-	<< std::endl;
+    ofs << "      *\n"
+        << "     ***\n"
+        << "    *****\n"
+        << "   *******\n"
+        << "  *********\n"
+        << " ***********\n"
+        << "*************\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "     |||\n"
+        << "  @@@@@@@@@@@\n"
+        << " @@@@ @ @@@@ ~\n"
+        << "+~ +x @@ ~ @ @ ~ \n"
+        << std::endl;
 
-    // Closing the file stream (not strictly necessary here since it's closed automatically when the ofstream object is destroyed)
     ofs.close();
  }

@@ -30,6 +30,7 @@ int main()
 			ShrubberyCreationForm shrubberyCreationForm("ShrubberyCreationForm");
 			
 			PRINT_STATEMENT(shrubberyCreationForm);
+		
 	}
 	catch(const ShrubberyCreationForm::GradeTooHighException& e){
 		  std::cerr << e.what() << std::endl;

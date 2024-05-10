@@ -47,6 +47,10 @@ class AForm{
 				public:
 					virtual const char* what() const throw();
 		};
+		class GenericException : public std::exception {
+				public:
+					virtual const char* what() const throw();
+		};
 
 		void beSigned(Bureaucrat &bureaucrat);
 		virtual void execute(Bureaucrat const & executor) const = 0;
